@@ -1,4 +1,4 @@
-# 🗨️ Forum Web Application
+# 🗨️ Forum 
 
 ## 📚 Description
 
