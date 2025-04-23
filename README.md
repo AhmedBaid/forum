@@ -65,5 +65,5 @@ This project is a full-stack web forum application built with Go, HTML/CSS, and 
 
 ---
 
-## 📁 Project Structure
+
 
