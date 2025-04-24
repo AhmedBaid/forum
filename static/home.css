@@ -276,12 +276,34 @@ body:has(#commentshow:checked) .post-time {
   gap: 30px;
   align-items: center;
 }
-
-.reaction {
+.reactionComment{
+  border-radius: 20px;
   display: flex;
-  gap: 2px;
+  flex-direction: row-reverse;
+  gap: 3px;
   align-items: center;
   justify-content: center;
+  padding: 5px;
+}
+
+.comment-like-btn,
+.comment-dislike-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  color: white;
+}
+
+.reaction {
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 3px;
+  align-items: center;
+  justify-content: center;
+  background-color: #04dbf121;
+  padding: 8px 10px;
 }
 
 .like-btn,
@@ -301,7 +323,13 @@ body:has(#commentshow:checked) .post-time {
 .dislike-btn.active-dislike {
   color: #ff0000ba;
 }
+.comment-like-btn.active-like {
+  color: #0000ffbf;
+}
 
+.comment-dislike-btn.active-dislike {
+  color: #ff0000ba;
+}
 .span-like.active-like {
   color: #0000ffbf;
 }
@@ -366,15 +394,21 @@ body:has(#commentshow:checked) .post-time {
 }
 
 .postform form .btnform {
+  font-size: 16px;
+  border: 1px solid;
   font-weight: bold;
   cursor: pointer;
   width: 90%;
   height: 40px;
   color: white;
   background-color: var(--wahd);
+  outline: none;
+  border: none;
+  box-shadow: 0 0 20px #00adb5;
+  border-radius: 10px;
 }
 
-.postform form .categorie {
+.postform form .categorie  {
   display: flex;
   flex-wrap: wrap;
   margin: auto;
@@ -465,3 +499,73 @@ body:has(#post-toggle:checked) .allPost {
     scale: 1;
   }
 }
+
+.like{
+  color: blue;
+}
+.deslike{
+  color: red;
+}
+
+.filter form h2{
+  margin-top: 15px;
+  margin-bottom: 35px;
+}
+
+
+.filter{
+  animation: 0.8s postAn ease-in-out;
+  display: none;
+  width: 500px;
+  height: 270px;
+  box-shadow:0 4px 15px rgb(67 171 180 / 38%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  color: white;
+  flex-direction: column;
+  background-color: #2d3039;
+  text-align: center;
+  border-radius: 15px;
+}
+
+
+
+body:has(#menu-toggle1:checked) .filter {
+  display: block;
+}
+
+body:has(#menu-toggle1:checked) .allPost {
+  opacity: 0.3;
+}
+
+.tag-check:checked+.tagC {
+  background-color: var(--wahd);
+  color: white;
+}
+
+.filter form .categorie  {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  width: 90%;
+  gap: 15px;
+}
+
+.filter form .filterbtn {
+  font-size: 18px;
+  border: 1px solid;
+  margin-top: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 90%;
+  height: 40px;
+  color: white;
+  background-color: var(--wahd);
+  outline: none;
+  border: none;
+  box-shadow: 0 0 20px #00adb5;
+  border-radius: 10px;
+}
+

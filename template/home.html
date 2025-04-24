@@ -20,8 +20,12 @@
   <header>
     <a href="/" class="title">Forum</a>
     <div>
-      {{if .Session}}
       <div class="gap">
+        {{if not .Session}}
+        <input type="checkbox" id="menu-toggle1" class="hidd" />
+        <label for="menu-toggle1" class="postbtn">Filter</label>
+        {{end}}
+        {{if .Session}}
         <input type="checkbox" id="menu-toggle" class="hidd" />
         <label for="menu-toggle" class="postbtn">Menu</label>
         <input type="checkbox" id="post-toggle" class="hidd" />
@@ -44,7 +48,21 @@
             <input type="submit" value="Create Post" class="btnform" /><br />
           </form>
         </div>
-
+        {{ else }}
+        <div  class="filter">
+          <form action="/filter" method="post">
+            <h2>Filter By Categorie</h2>
+          <div class="categorie">
+            {{ range .Categories}}
+            <input type="checkbox" id="tag{{.Id}}" class="tag-check" name="tags" value="{{.Id}}" hidden>
+            <label for="tag{{.Id}}" class="tagC">{{.Name}}</label>
+            {{end}}
+          </div>
+          <button type="submit"  class="filterbtn">filter</button>
+        </form>
+        </div>
+{{end}}
+{{if .Session}}
         <input type="checkbox" id="toggle-menu" class="hidd" />
         <label for="toggle-menu" class="avatar-label">
           <img src="https://robohash.org/{{.UserActive}}.png?size=50x50" />
@@ -108,20 +126,20 @@
               <span class="span-like  {{if eq .UserReactionPosts 1}}active-like{{end}}">{{.TotalLikes}}</span>
               <button name="reaction" value="1" class="like-btn  {{if eq .UserReactionPosts 1}}active-like{{end}}"
                 type="submit">
-                <i class="fa-regular fa-thumbs-up"></i>
+                <i class="fa-solid fa-thumbs-up"></i>
               </button>
             </div>
             <div class="reaction">
               <span class="span-dislike {{if eq .UserReactionPosts -1}}active-dislike{{end}}">{{.TotalDislikes}}</span>
               <button name="reaction" value="-1"
                 class="dislike-btn  {{if eq .UserReactionPosts -1}}active-dislike{{end}}" type="submit">
-                <i class="fa-regular fa-thumbs-down"></i>
+                <i class="fa-solid fa-thumbs-down"></i>
               </button>
             </div>
             <div class="reaction">
               <span>{{.TotalComments}}</span>
               <input type="checkbox" class="hidd" id="commentshow-{{.Id}}" />
-              <label for="commentshow-{{.Id}}" class="comment-icon"><i class="fa-regular fa-comment"></i></label>
+              <label for="commentshow-{{.Id}}" class="comment-icon"><i class="fa-solid fa-comment"></i></label>
               <style>
                 #post-{{.Id}}:has(#commentshow-{{.Id}}:checked) .second-part {
                   display: flex;
@@ -163,19 +181,19 @@
                 <span class="time">{{.TimeFormattedComment}}</span>
                 <div class="comment-reactions">
                   <form action="/CommentsLike " method="post">
-                    <div class="reaction">
+                    <div class="reactionComment">
                       <span class="span-like  {{if eq .UserReactionComment 1}}active-like{{end}}">{{.TotalLikes}}</span>
                       <button name="reaction" value="1"
-                        class="like-btn {{if eq .UserReactionComment 1}}active-like{{end}}" type="submit">
-                        <i class="fa-regular fa-thumbs-up"></i>
+                        class="comment-like-btn {{if eq .UserReactionComment 1}}active-like{{end}}" type="submit">
+                        <i class="fa-solid fa-thumbs-up"></i>
                       </button>
                     </div>
-                    <div class="reaction">
+                    <div class="reactionComment">
                       <span
                         class="span-dislike {{if eq .UserReactionComment -1}}active-dislike{{end}}">{{.TotalDislikes}}</span>
                       <button name="reaction" value="-1"
-                        class="dislike-btn {{if eq .UserReactionComment -1}}active-dislike{{end}}" type="submit">
-                        <i class="fa-regular fa-thumbs-down"></i>
+                        class="comment-dislike-btn {{if eq .UserReactionComment -1}}active-dislike{{end}}" type="submit">
+                        <i class="fa-solid fa-thumbs-down"></i>
                       </button>
                     </div>
                     <input type="hidden" name="userId" value="{{$userId}}" />
