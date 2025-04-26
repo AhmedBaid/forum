@@ -6,7 +6,12 @@
   --bg2: #4285f4;
   --akhdar: #0afb26;
 }
-
+.notfound {
+  display: flex;
+  justify-content: center;
+  margin-top: 150px;
+  color: white;
+}
 * {
   padding: 0;
   margin: 0;
@@ -20,9 +25,8 @@ body::-webkit-scrollbar,
   display: none;
 }
 
-
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
+input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
@@ -32,7 +36,7 @@ input:-webkit-autofill:active {
 }
 
 body {
-  background: linear-gradient(135deg, #222831, #393e46);
+  background: #222831;
 }
 
 .allPost {
@@ -129,7 +133,7 @@ body {
   border: 1px solid gray;
 }
 
-.comment form input:focus{
+.comment form input:focus {
   border: 1px solid #00adb5;
 }
 
@@ -276,7 +280,7 @@ body:has(#commentshow:checked) .post-time {
   gap: 30px;
   align-items: center;
 }
-.reactionComment{
+.reactionComment {
   border-radius: 20px;
   display: flex;
   flex-direction: row-reverse;
@@ -339,7 +343,7 @@ body:has(#commentshow:checked) .post-time {
 }
 
 .postform {
-  animation: 0.8s postAn ease-in-out;
+  animation: 0.5s postAn ease-in-out;
   display: none;
   width: 500px;
   height: 400px;
@@ -408,7 +412,7 @@ body:has(#commentshow:checked) .post-time {
   border-radius: 10px;
 }
 
-.postform form .categorie  {
+.postform form .categorie {
   display: flex;
   flex-wrap: wrap;
   margin: auto;
@@ -416,7 +420,7 @@ body:has(#commentshow:checked) .post-time {
   gap: 15px;
 }
 
-.tagC {
+.tagC,.tagCategorie {
   border: 2px solid var(--wahd);
   padding: 5px 0;
   width: 100px;
@@ -500,25 +504,23 @@ body:has(#post-toggle:checked) .allPost {
   }
 }
 
-.like{
+.like {
   color: blue;
 }
-.deslike{
+.deslike {
   color: red;
 }
 
-.filter form h2{
+.filter form h2 {
   margin-top: 15px;
   margin-bottom: 35px;
 }
 
-
-.filter{
-  animation: 0.8s postAn ease-in-out;
+.filter {
+  animation: 0.5s postAn ease-in-out;
   display: none;
   width: 500px;
-  height: 270px;
-  box-shadow:0 4px 15px rgb(67 171 180 / 38%);
+  box-shadow: 0 4px 15px rgb(67 171 180 / 38%);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -529,23 +531,45 @@ body:has(#post-toggle:checked) .allPost {
   text-align: center;
   border-radius: 15px;
 }
+.filter h1 {
+  margin: 10px 0;
+  color: #04dbf1;
+}
 
-
-
-body:has(#menu-toggle1:checked) .filter {
+.filter h4 {
+  margin: 30px 0 5px 0;
+}
+.filter .form1,
+.filter .form2 {
+  margin: 20px 0;
+}
+body:has(#filter-toggle1:checked) .filter {
   display: block;
 }
 
-body:has(#menu-toggle1:checked) .allPost {
+body:has(#filter-toggle1:checked) .allPost {
   opacity: 0.3;
 }
 
-.tag-check:checked+.tagC {
+body:has(#filter-toggle:checked) .filter {
+  display: block;
+}
+
+body:has(#filter-toggle:checked) .allPost {
+  opacity: 0.3;
+}
+
+.tag-check:checked + .tagC {
   background-color: var(--wahd);
   color: white;
 }
 
-.filter form .categorie  {
+.tag:checked + .tagCategorie {
+  background-color: var(--wahd);
+  color: white;
+}
+
+.filter .form3 .categorie {
   display: flex;
   flex-wrap: wrap;
   margin: auto;
@@ -553,10 +577,10 @@ body:has(#menu-toggle1:checked) .allPost {
   gap: 15px;
 }
 
-.filter form .filterbtn {
+.filter .form3 .filterbtn {
+  margin: 20px 0;
   font-size: 18px;
   border: 1px solid;
-  margin-top: 50px;
   font-weight: bold;
   cursor: pointer;
   width: 90%;
@@ -565,7 +589,20 @@ body:has(#menu-toggle1:checked) .allPost {
   background-color: var(--wahd);
   outline: none;
   border: none;
-  box-shadow: 0 0 20px #00adb5;
+  box-shadow: 0 0 10px #00adb5;
   border-radius: 10px;
 }
-
+.filter .form1 .filterbtn,.filter .form2 .filterbtn{
+  font-size: 18px;
+  border: 1px solid;
+  font-weight: bold;
+  cursor: pointer;
+  width: 90%;
+  height: 40px;
+  color: white;
+  background-color: var(--wahd);
+  outline: none;
+  border: none;
+  box-shadow: 0 0 10px #00adb5;
+  border-radius: 10px;
+} 
