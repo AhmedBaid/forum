@@ -1,18 +1,21 @@
-FROM golang:1.22
+FROM golang:alpine
+
+# Install needed packages
+RUN apk add --no-cache gcc musl-dev sqlite-libs
 
 WORKDIR /app
 
-COPY go.mod go.sum ./
-RUN go mod download
-
 COPY . .
 
-RUN go build -o forum cmd/main.go
+ENV CGO_ENABLED=1
+
+RUN go mod tidy
+RUN go build -o main ./cmd/main.go
 
 LABEL maintainer="ranniz | abaid | mennaas"
 LABEL version="1.0"
-LABEL description="forum"
+LABEL description="Forum"
 
 EXPOSE 8080
 
-CMD ["./forum"]
+CMD ["./main"]
