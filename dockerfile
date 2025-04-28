@@ -1,14 +1,13 @@
-# to Download the latest stable version of golang-- alpine is a Lightweight (khfifa) version of linux with a small size  5 MB
-FROM golang:alpine
+FROM golang:1.22
 
 WORKDIR /app
 
-# Install the Bash shell in our image
-RUN apk add  bash
+COPY go.mod go.sum ./
+RUN go mod download
 
 COPY . .
 
-RUN go build -o forum ./cmd
+RUN go build -o forum cmd/main.go
 
 LABEL maintainer="ranniz | abaid | mennaas"
 LABEL version="1.0"
