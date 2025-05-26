@@ -34,7 +34,12 @@ func CreatePost(w http.ResponseWriter, r *http.Request) {
 		if size >= maxsize {
 			helpers.RanderTemplate(w, "statusPage.html", http.StatusBadRequest, utils.ErrorBadReq)
 			return
-
+		}
+	}
+	if header.Filename != "" {
+		if !strings.HasSuffix(header.Filename, ".jpg") && !strings.HasSuffix(header.Filename, ".png") && !strings.HasSuffix(header.Filename, ".jpeg") {
+			helpers.RanderTemplate(w, "statusPage.html", http.StatusBadRequest, utils.ErrorBadReq)
+			return
 		}
 	}
 
@@ -64,13 +69,6 @@ func CreatePost(w http.ResponseWriter, r *http.Request) {
 		photoURL = photoDir + header.Filename
 	} else {
 		photoURL = ""
-	}
-
-	if photoURL != "" {
-		if !strings.HasSuffix(photoURL, ".jpg") && !strings.HasSuffix(photoURL, ".png") && !strings.HasSuffix(photoURL, ".jpeg") {
-			helpers.RanderTemplate(w, "statusPage.html", http.StatusBadRequest, utils.ErrorBadReq)
-			return
-		}
 	}
 
 	//! end of upload
